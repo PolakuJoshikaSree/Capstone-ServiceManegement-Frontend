@@ -1,0 +1,18 @@
+<h2>Assign Technician</h2>
+
+<p *ngIf="loading">Loading technicians...</p>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<select [(ngModel)]="selectedTechnicianId">
+  <option value="">Select technician</option>
+  <option *ngFor="let t of technicians" [value]="t.id">
+    {{ t.name }}
+  </option>
+</select>
+
+<button
+  (click)="assign()"
+  [disabled]="!selectedTechnicianId"
+>
+  Assign
+</button>

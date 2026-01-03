@@ -1,0 +1,38 @@
+<!-- LOADING -->
+<div *ngIf="isLoading" class="center">
+  <h2>Loading service details...</h2>
+</div>
+
+<!-- ERROR -->
+<div *ngIf="!isLoading && errorMessage" class="center error">
+  <h2>{{ errorMessage }}</h2>
+  <button (click)="goBack()">Back</button>
+</div>
+
+<!-- SERVICE DETAILS -->
+<div *ngIf="!isLoading && service" class="details-card">
+
+  <h1>{{ service.name }}</h1>
+  <p class="category">{{ service.categoryName }}</p>
+
+  <p class="description">
+    {{ service.description }}
+  </p>
+
+  <div class="price">
+    ₹{{ service.basePrice }}
+  </div>
+
+  <div class="duration">
+    ⏱ {{ service.estimatedDurationMinutes }} minutes
+  </div>
+
+  <button class="primary" (click)="bookService()">
+    Book Service
+  </button>
+
+  <button class="secondary" (click)="goBack()">
+    Back
+  </button>
+
+</div>

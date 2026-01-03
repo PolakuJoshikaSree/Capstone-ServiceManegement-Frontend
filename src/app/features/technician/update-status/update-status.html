@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Update Booking Status</h2>
+
+  <select [(ngModel)]="status">
+    <option value="">Select status</option>
+    <option value="IN_PROGRESS">IN_PROGRESS</option>
+    <option value="COMPLETED">COMPLETED</option>
+  </select>
+
+  <button (click)="update()" [disabled]="!status">
+    Update
+  </button>
+</div>

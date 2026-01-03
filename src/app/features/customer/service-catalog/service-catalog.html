@@ -1,0 +1,78 @@
+<div class="catalog-container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Home services at your doorstep</h1>
+    <p>Trusted professionals. Transparent pricing.</p>
+
+    <input
+      type="text"
+      class="search-box"
+      placeholder="Search for services..."
+      [(ngModel)]="searchText"
+      (input)="onSearch()"
+    />
+  </section>
+
+  <!-- LOADING -->
+  <div *ngIf="isLoading" class="center-state">
+    <h2>Loading services...</h2>
+  </div>
+
+  <!-- ERROR -->
+  <div *ngIf="!isLoading && errorMessage" class="center-state error">
+    <h2>{{ errorMessage }}</h2>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-wrapper" *ngIf="!isLoading">
+    <div class="filters-row">
+      <button
+        class="filter-chip"
+        [class.active]="selectedCategory === 'All'"
+        (click)="selectCategory('All')">
+        All
+      </button>
+
+      <button
+        class="filter-chip"
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category"
+        (click)="selectCategory(category)">
+        {{ category }}
+      </button>
+    </div>
+  </div>
+
+  <!-- NO RESULTS -->
+  <div
+    *ngIf="
+      !isLoading &&
+      services.length > 0 &&
+      (filteredGroupedServices | keyvalue).length === 0
+    "
+    class="center-state"
+  >
+    <h2>No services found</h2>
+    <p>Try adjusting your search or filters</p>
+  </div>
+
+  <!-- SERVICES -->
+  <ng-container *ngIf="!isLoading">
+    <ng-container
+      *ngFor="let category of (filteredGroupedServices | keyvalue); trackBy: trackByKey"
+    >
+      <h2 class="category-title">{{ category.key }}</h2>
+
+      <div class="services-grid">
+        <div class="service-card" *ngFor="let service of category.value">
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.description }}</p>
+          <div class="price">₹{{ service.basePrice }}</div>
+          <button (click)="viewDetails(service.id)">View Details</button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+</div>

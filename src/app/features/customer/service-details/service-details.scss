@@ -1,0 +1,54 @@
+.center {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.error {
+  color: #ef4444;
+}
+
+.details-card {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.category {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.description {
+  margin: 20px 0;
+  color: #4b5563;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.duration {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+button.primary {
+  background: #4f46e5;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+}
+
+button.secondary {
+  background: #e5e7eb;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+}

@@ -1,0 +1,38 @@
+<div class="auth-container">
+  <div class="card">
+    <h2>Create Account</h2>
+
+    <input placeholder="First Name" [(ngModel)]="firstName" />
+    <input placeholder="Last Name" [(ngModel)]="lastName" />
+
+    <input type="email" placeholder="Email" [(ngModel)]="email" />
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+
+    <input
+      placeholder="Phone Number (+91xxxxxxxxxx)"
+      [(ngModel)]="phoneNumber"
+    />
+
+    <input placeholder="Address" [(ngModel)]="address" />
+    <input placeholder="City" [(ngModel)]="city" />
+    <input placeholder="State" [(ngModel)]="state" />
+    <input placeholder="Zip Code" [(ngModel)]="zipCode" />
+
+    <button (click)="register()">Register</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <p class="switch">
+      Already have an account?
+    </p>
+    <button class="link-btn" (click)="goToLogin()">Login</button>
+  </div>
+</div>
+
+<p class="error" *ngIf="error">{{ error }}</p>
+

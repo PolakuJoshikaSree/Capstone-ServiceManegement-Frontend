@@ -1,0 +1,18 @@
+<h2>My Assigned Tasks</h2>
+
+<div *ngIf="loading">Loading...</div>
+
+<div *ngIf="!loading && tasks.length === 0">
+  No tasks assigned yet.
+</div>
+
+<div *ngFor="let task of tasks" class="task-card">
+  <p><b>Booking ID:</b> {{ task.bookingId }}</p>
+  <p><b>Service:</b> {{ task.serviceName }}</p>
+  <p><b>Category:</b> {{ task.categoryName }}</p>
+  <p><b>Status:</b> {{ task.status }}</p>
+
+  <button routerLink="/technician/update-status/{{ task.bookingId }}">
+    Update Status
+  </button>
+</div>

@@ -1,0 +1,23 @@
+<div class="my-services">
+
+  <h2>My Services</h2>
+
+  <p *ngIf="loading">Loading your services...</p>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <div *ngIf="!loading && bookings.length === 0">
+    No bookings yet.
+  </div>
+
+  <div
+    class="booking-card"
+    *ngFor="let b of bookings; trackBy: trackByBookingId"
+  >
+    <h3>{{ b.serviceName }}</h3>
+    <p>{{ b.categoryName }}</p>
+    <p>{{ b.scheduledDate }} | {{ b.timeSlot }}</p>
+    <span class="status">{{ b.status }}</span>
+  </div>
+
+</div>

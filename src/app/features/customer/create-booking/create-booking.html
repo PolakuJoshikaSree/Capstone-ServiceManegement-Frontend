@@ -1,0 +1,61 @@
+<div class="booking">
+  <h2>Book Service</h2>
+
+  <p class="service-info">
+    <strong>{{ serviceName }}</strong><br />
+    <span>{{ categoryName }}</span>
+  </p>
+
+  <!-- Scheduled Date -->
+  <label>Scheduled Date</label>
+  <input
+    type="date"
+    [(ngModel)]="scheduledDate"
+    required
+  />
+
+  <!-- Time Slot -->
+  <label>Time Slot</label>
+  <input
+    type="text"
+    placeholder="10:00 - 12:00"
+    [(ngModel)]="timeSlot"
+    required
+  />
+
+  <!-- Issue -->
+  <label>Issue Description</label>
+  <textarea
+    rows="3"
+    placeholder="Describe the issue"
+    [(ngModel)]="issueDescription"
+    required>
+  </textarea>
+
+  <!-- Payment -->
+  <label>Payment Mode</label>
+  <select [(ngModel)]="paymentMode" required>
+    <option value="" disabled>Select payment mode</option>
+    <option value="CASH">Cash</option>
+    <option value="ONLINE">Online</option>
+  </select>
+
+  <!-- Address -->
+  <label>Service Address</label>
+  <textarea
+    rows="2"
+    [(ngModel)]="address"
+    required>
+  </textarea>
+
+  <!-- BUTTON -->
+  <button
+    (click)="confirm()"
+    [disabled]="loading || !scheduledDate || !timeSlot || !paymentMode || !address"
+  >
+    {{ loading ? 'Booking...' : 'Confirm Booking' }}
+  </button>
+
+  <!-- ERROR -->
+  <p class="error" *ngIf="error">{{ error }}</p>
+</div>

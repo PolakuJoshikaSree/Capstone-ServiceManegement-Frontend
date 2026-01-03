@@ -1,0 +1,25 @@
+.header {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4f46e5;
+  cursor: pointer;
+}
+
+.actions .logout {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+<h2>Invoices</h2>
+
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let invoice of invoices">
+    <td>{{ invoice.serviceName }}</td>
+    <td>₹{{ invoice.amount }}</td>
+    <td>{{ invoice.status }}</td>
+  </tr>
+</table>
