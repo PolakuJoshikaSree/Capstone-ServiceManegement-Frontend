@@ -1,0 +1,77 @@
+.billing-page {
+  padding: 24px;
+}
+
+.billing-header {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #6b7280;
+  }
+}
+
+.state {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.state.error {
+  color: #dc2626;
+}
+
+.table-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  font-weight: 600;
+  color: #374151;
+}
+
+tbody tr {
+  border-top: 1px solid #e5e7eb;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.paid {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}

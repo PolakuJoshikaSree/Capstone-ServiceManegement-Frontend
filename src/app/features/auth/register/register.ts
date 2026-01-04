@@ -33,6 +33,7 @@ export class RegisterComponent {
 
   register() {
     this.error = '';
+    this.loading = true;
 
     const payload = {
       firstName: this.firstName.trim(),
@@ -47,25 +48,27 @@ export class RegisterComponent {
       zipCode: this.zipCode
     };
 
-    this.http.post<any>('http://localhost:8802/api/auth/register', payload)
-      .subscribe({
-        next: (res) => {
+    this.http.post<any>(
+      'http://localhost:8765/auth-service/api/auth/register',
+      payload
+    ).subscribe({
+      next: (res) => {
+        const token = res.data.accessToken;
+        const role = res.data.user.role; // CUSTOMER
 
-          const token = res.data.accessToken;
-          const role = 'ROLE_' + res.data.user.role;
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', role);
 
-          localStorage.setItem('token', token);
-          localStorage.setItem('role', role);
-
-          this.router.navigate(['/customer/services']);
-        },
-        error: (err) => {
-          this.error =
-            err.error?.message ||
-            err.error ||
-            'Registration failed';
-        }
-      });
+        this.router.navigate(['/customer/services']);
+      },
+      error: (err) => {
+        this.error =
+          err.error?.message ||
+          err.error ||
+          'Registration failed';
+        this.loading = false;
+      }
+    });
   }
 
   goToLogin() {

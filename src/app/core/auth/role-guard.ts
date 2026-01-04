@@ -8,10 +8,8 @@ export class RoleGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
-    const expectedRole = route.data['role']; 
+    const expectedRole = route.data['role'];
     const userRole = localStorage.getItem('role');
-
-    console.log('RoleGuard check:', userRole, 'expected:', expectedRole);
 
     if (!userRole) {
       this.router.navigate(['/login']);
@@ -19,7 +17,6 @@ export class RoleGuard implements CanActivate {
     }
 
     if (userRole !== expectedRole) {
-      console.warn('Access denied');
       this.router.navigate(['/login']);
       return false;
     }

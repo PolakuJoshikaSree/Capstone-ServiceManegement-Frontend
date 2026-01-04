@@ -1,1 +1,60 @@
-<p>billing works!</p>
+<div class="billing-page">
+
+  <div class="billing-header">
+    <div>
+      <h2>Billing</h2>
+      <p class="subtitle">Customer invoices</p>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="state" *ngIf="loading">
+    Loading invoices...
+  </div>
+
+  <!-- Error -->
+  <div class="state error" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <!-- Empty -->
+  <div class="state" *ngIf="!loading && invoices.length === 0">
+    No invoices found.
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper" *ngIf="!loading && invoices.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Invoice No</th>
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{ invoice.invoiceNumber }}</td>
+          <td>{{ invoice.customerEmail || invoice.customerId }}</td>
+          <td>₹{{ invoice.totalAmount }}</td>
+
+          <td>
+            <span
+              class="status"
+              [class.paid]="invoice.status === 'PAID'"
+              [class.pending]="invoice.status !== 'PAID'"
+            >
+              {{ invoice.status }}
+            </span>
+          </td>
+
+          <td>{{ invoice.createdAt | date:'mediumDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

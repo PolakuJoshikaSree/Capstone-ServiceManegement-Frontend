@@ -40,10 +40,9 @@ export class ServiceCatalogComponent implements OnInit {
 
   private loadServices(): void {
     this.isLoading = true;
-    this.errorMessage = '';
 
     this.http
-      .get<any[]>('http://localhost:8082/api/services')
+      .get<any[]>('http://localhost:8765/api/services')
       .subscribe({
         next: (res) => {
           this.services = res || [];
@@ -84,17 +83,14 @@ export class ServiceCatalogComponent implements OnInit {
     this.filteredGroupedServices = {};
 
     Object.keys(this.groupedServices).forEach(category => {
-
       if (this.selectedCategory !== 'All' &&
-          category !== this.selectedCategory) {
-        return;
-      }
+          category !== this.selectedCategory) return;
 
       const services = this.groupedServices[category];
       const filtered = text
-        ? services.filter(service =>
-            service.name.toLowerCase().includes(text) ||
-            service.description?.toLowerCase().includes(text)
+        ? services.filter(s =>
+            s.name.toLowerCase().includes(text) ||
+            s.description?.toLowerCase().includes(text)
           )
         : services;
 

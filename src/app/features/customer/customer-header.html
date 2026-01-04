@@ -1,15 +1,25 @@
 <header class="topbar">
+
+  <!-- LEFT -->
   <div class="left" (click)="goHome()">
     <span class="logo">ServiceHub</span>
   </div>
 
+  <!-- RIGHT -->
   <div class="right">
+
     <button class="link-btn" (click)="goMyBookings()">
       My Bookings
+    </button>
+
+    <button class="nav-btn" (click)="goInvoices()">
+      My Invoices
     </button>
 
     <button class="logout-btn" (click)="logout()">
       Logout
     </button>
+
   </div>
+
 </header>

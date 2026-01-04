@@ -11,6 +11,7 @@
   z-index: 100;
 }
 
+/* Logo */
 .logo {
   font-size: 20px;
   font-weight: 700;
@@ -18,12 +19,14 @@
   cursor: pointer;
 }
 
+/* Right section */
 .right {
   display: flex;
   gap: 18px;
   align-items: center;
 }
 
+/* My Bookings */
 .link-btn {
   background: transparent;
   border: none;
@@ -37,12 +40,31 @@
   color: #4f46e5;
 }
 
+/* My Invoices */
+.nav-btn {
+  background: white;
+  border: 2px solid #4f46e5;
+  color: #4f46e5;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: #4f46e5;
+  color: white;
+}
+
+/* Logout */
 .logout-btn {
   background: #ef4444;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 10px;
+  padding: 8px 18px;
+  border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
 }

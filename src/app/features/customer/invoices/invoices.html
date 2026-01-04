@@ -1,15 +1,51 @@
-<h2>Invoices</h2>
+<h2 class="page-title">My Invoices</h2>
 
-<table>
-  <tr>
-    <th>Service</th>
-    <th>Amount</th>
-    <th>Status</th>
-  </tr>
+<div *ngIf="!loading && invoices.length === 0" class="empty-state">
+  No invoices generated yet.
+</div>
 
-  <tr *ngFor="let invoice of invoices">
-    <td>{{ invoice.serviceName }}</td>
-    <td>₹{{ invoice.amount }}</td>
-    <td>{{ invoice.status }}</td>
-  </tr>
-</table>
+<div *ngIf="loading" class="loading">
+  Loading invoices...
+</div>
+
+<div
+  class="invoice-card"
+  *ngFor="let invoice of invoices">
+
+  <div class="invoice-row">
+    <span class="label">Invoice</span>
+    <span class="value">{{ invoice.invoiceNumber }}</span>
+  </div>
+
+  <div class="invoice-row">
+    <span class="label">Total Amount</span>
+    <span class="value">₹{{ invoice.totalAmount }}</span>
+  </div>
+
+  <div class="invoice-row status-row">
+
+    <span
+      class="status"
+      [ngClass]="{
+        'pending': invoice.paymentStatus === 'PENDING',
+        'paid': invoice.paymentStatus === 'PAID'
+      }">
+      {{ invoice.paymentStatus }}
+    </span>
+
+    <button
+      *ngIf="invoice.paymentStatus === 'PENDING'"
+      class="pay-btn"
+      (click)="payInvoice(invoice.bookingId)">
+      Pay Now
+    </button>
+
+    <span
+      *ngIf="invoice.paymentStatus === 'PAID'"
+      class="paid-text">
+      ✅ Paid
+    </span>
+
+  </div>
+
+</div>

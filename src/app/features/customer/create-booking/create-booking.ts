@@ -7,10 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-create-booking',
   standalone: true,
-  imports: [
-    CommonModule,   // ✅ for *ngIf
-    FormsModule     // ✅ for ngModel
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './create-booking.html',
   styleUrls: ['./create-booking.scss']
 })
@@ -18,7 +15,6 @@ export class CreateBookingComponent implements OnInit {
 
   serviceName = '';
   categoryName = '';
-
   scheduledDate = '';
   timeSlot = '';
   issueDescription = '';
@@ -37,7 +33,6 @@ export class CreateBookingComponent implements OnInit {
   ngOnInit(): void {
     this.serviceName =
       this.route.snapshot.queryParamMap.get('serviceName') || '';
-
     this.categoryName =
       this.route.snapshot.queryParamMap.get('categoryName') || '';
   }
@@ -56,7 +51,8 @@ export class CreateBookingComponent implements OnInit {
       address: this.address
     };
 
-    this.http.post('http://localhost:8084/api/bookings', payload)
+    this.http
+      .post('http://localhost:8765/api/bookings', payload)
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/customer/my-services');

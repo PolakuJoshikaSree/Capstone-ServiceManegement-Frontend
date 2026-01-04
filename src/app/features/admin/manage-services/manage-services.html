@@ -1,1 +1,44 @@
-<p>manage-services works!</p>
+<div class="page">
+
+  <div class="header">
+    <h2>Service Catalog</h2>
+    <button class="add-btn" (click)="toggleAddForm()">
+      + Add Service
+    </button>
+  </div>
+
+  <!-- ADD SERVICE FORM -->
+  <div class="add-form" *ngIf="showAddForm">
+    <input placeholder="Service Name" [(ngModel)]="newService.name" />
+    <input placeholder="Category" [(ngModel)]="newService.category" />
+    <input type="number" placeholder="Price" [(ngModel)]="newService.price" />
+    <textarea placeholder="Description"
+              [(ngModel)]="newService.description"></textarea>
+
+    <div class="actions">
+      <button (click)="addService()">Save</button>
+      <button class="cancel" (click)="toggleAddForm()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- SERVICES LIST -->
+  <table class="services-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of services">
+        <td>{{ s.name }}</td>
+        <td>{{ s.category }}</td>
+        <td>₹{{ s.price }}</td>
+        <td>{{ s.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <h1>Admin Dashboard</h1>
+  <p class="subtitle">Overview of system activity</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Total Bookings</h3>
+      <span>{{ stats.totalBookings }}</span>
+      <p>All service requests</p>
+    </div>
+
+    <div class="card success">
+      <h3>Completed</h3>
+      <span>{{ stats.completed }}</span>
+      <p>Successfully finished</p>
+    </div>
+
+    <div class="card warning">
+      <h3>In Progress</h3>
+      <span>{{ stats.inProgress }}</span>
+      <p>Ongoing services</p>
+    </div>
+  </div>
+</div>

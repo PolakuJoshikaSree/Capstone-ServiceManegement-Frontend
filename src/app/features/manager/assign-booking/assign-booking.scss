@@ -1,32 +1,74 @@
 .assign-container {
-  max-width: 500px;
+  max-width: 520px;
   margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-label {
+h2 {
+  margin-bottom: 6px;
+}
+
+.sub {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.label {
   display: block;
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
 }
 
 select {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+
+  /* 🔥 IMPORTANT FIX */
+  background-color: #ffffff;
+  color: #111111;
+  font-size: 15px;
+}
+
+select option {
+  background-color: #ffffff;
+  color: #111111;
 }
 
 button {
-  padding: 10px 20px;
-  background: #6c63ff;
-  color: #fff;
+  margin-top: 18px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
   border: none;
-  border-radius: 6px;
+  background: #6c63ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loading {
+  color: #555;
+}
+
 .error {
-  color: red;
+  color: #d32f2f;
+  margin-top: 10px;
+}
+
+.success {
+  color: #2e7d32;
   margin-top: 10px;
 }

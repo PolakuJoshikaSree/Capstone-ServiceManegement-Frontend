@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-manager-dashboard',
   imports: [
     CommonModule,
-    RouterModule   
+    RouterModule
   ],
   templateUrl: './manager-dashboard.html',
   styleUrls: ['./manager-dashboard.scss']
@@ -29,14 +29,16 @@ export class ManagerDashboardComponent implements OnInit {
   }
 
   loadRequestedBookings(): void {
-  this.loading = true;
+    this.loading = true;
+    this.error = '';
 
-  this.http.get<any[]>('http://localhost:8084/api/bookings')
-    .subscribe({
+    this.http.get<any[]>(
+      'http://localhost:8765/api/bookings'
+    ).subscribe({
       next: (res) => {
         console.log('BOOKINGS FROM API:', res);
 
-        this.bookings = res.filter(
+        this.bookings = (res || []).filter(
           b => b.status === 'REQUESTED'
         );
 
@@ -50,7 +52,5 @@ export class ManagerDashboardComponent implements OnInit {
         this.cdr.detectChanges();
       }
     });
-}
-
-
+  }
 }

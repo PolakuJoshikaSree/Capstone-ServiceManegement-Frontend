@@ -1,0 +1,39 @@
+<nav class="navbar" *ngIf="auth.isLoggedIn()">
+
+  <div class="logo">Service Management</div>
+
+  <ul class="links">
+
+    <!-- ADMIN -->
+    <li *ngIf="role() === 'ADMIN'">
+      <a routerLink="/admin/dashboard">Dashboard</a>
+    </li>
+
+    <li *ngIf="role() === 'ADMIN'">
+      <a routerLink="/admin/services">Services</a>
+    </li>
+
+    <!-- MANAGER -->
+    <li *ngIf="role() === 'MANAGER'">
+      <a routerLink="/manager">Bookings</a>
+    </li>
+
+    <!-- TECHNICIAN -->
+    <li *ngIf="role() === 'TECHNICIAN'">
+      <a routerLink="/technician/tasks">My Tasks</a>
+    </li>
+
+    <!-- CUSTOMER -->
+    <li *ngIf="role() === 'CUSTOMER'">
+      <a routerLink="/customer/services">Services</a>
+    </li>
+
+    <li *ngIf="role() === 'CUSTOMER'">
+      <a routerLink="/customer/my-services">My Bookings</a>
+    </li>
+
+  </ul>
+
+  <button class="logout" (click)="logout()">Logout</button>
+
+</nav>

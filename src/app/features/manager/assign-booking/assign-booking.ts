@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -16,51 +16,88 @@ export class AssignBookingsComponent implements OnInit {
   bookingId = '';
   technicians: any[] = [];
   selectedTechnicianId = '';
-  loading = false;
+
+  loading = true;
   error = '';
+  success = '';
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.bookingId = this.route.snapshot.paramMap.get('bookingId') || '';
+    console.log('📌 Booking ID:', this.bookingId);
+
     this.loadTechnicians();
   }
 
+  // ================= LOAD TECHNICIANS =================
   loadTechnicians(): void {
-  this.loading = true;
+    const token = localStorage.getItem('accessToken'); // ✅ FIX
 
-  this.http.get<any>(
-    'http://localhost:8802/api/auth/users/technicians'
-  ).subscribe({
-    next: (res) => {
-      this.technicians = res.data; 
-      this.loading = false;
-    },
-    error: () => {
-      this.error = 'Failed to load technicians';
-      this.loading = false;
-    }
-  });
-}
+    console.log('🔑 Token:', token);
 
+    this.http.get<any>(
+      'http://localhost:8765/api/auth/users/technicians',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    ).subscribe({
+      next: res => {
+        console.log('✅ Technicians response:', res);
+        this.technicians = res.data || [];
+        this.loading = false;
+        this.cdr.detectChanges();
+      },
+      error: err => {
+        console.error('❌ Load technicians error:', err);
+        this.error = 'Failed to load technicians';
+        this.loading = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
 
+  // ================= ASSIGN =================
   assign(): void {
+    console.log('➡️ Assign clicked');
+
     if (!this.selectedTechnicianId) {
       this.error = 'Please select a technician';
       return;
     }
 
-    //  MATCH CONTROLLER SIGNATURE
+    const token = localStorage.getItem('accessToken'); // ✅ FIX
+
+    console.log('📦 Assign payload:', {
+      bookingId: this.bookingId,
+      technicianId: this.selectedTechnicianId
+    });
+
     this.http.put(
-      `http://localhost:8084/api/bookings/${this.bookingId}/assign/${this.selectedTechnicianId}`,
-      {}
+      `http://localhost:8765/api/bookings/${this.bookingId}/assign/${this.selectedTechnicianId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     ).subscribe({
-      next: () => this.router.navigate(['/manager']),
-      error: () => this.error = 'Assignment failed'
+      next: res => {
+        console.log('✅ Assign success:', res);
+        this.success = 'Technician assigned successfully';
+        setTimeout(() => this.router.navigate(['/manager']), 800);
+      },
+      error: err => {
+        console.error('❌ Assign error:', err);
+        this.error = 'Assignment failed';
+      }
     });
   }
 }

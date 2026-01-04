@@ -1,18 +1,38 @@
-<h2>Assign Technician</h2>
+<div class="assign-container">
 
-<p *ngIf="loading">Loading technicians...</p>
-<p class="error" *ngIf="error">{{ error }}</p>
+  <h2>Assign Technician</h2>
 
-<select [(ngModel)]="selectedTechnicianId">
-  <option value="">Select technician</option>
-  <option *ngFor="let t of technicians" [value]="t.id">
-    {{ t.name }}
-  </option>
-</select>
+  <p class="sub">
+    Booking ID: <strong>{{ bookingId }}</strong>
+  </p>
 
-<button
-  (click)="assign()"
-  [disabled]="!selectedTechnicianId"
->
-  Assign
-</button>
+  <!-- Loading -->
+  <p *ngIf="loading" class="loading">Loading technicians...</p>
+
+  <!-- Error -->
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <!-- Success -->
+  <p class="success" *ngIf="success">{{ success }}</p>
+
+  <!-- Technician Select -->
+  <label class="label">Technician</label>
+  <select
+    [(ngModel)]="selectedTechnicianId"
+    [disabled]="loading || technicians.length === 0"
+  >
+    <option value="" disabled>Select technician</option>
+
+    <option *ngFor="let tech of technicians" [value]="tech.id">
+      {{ tech.name || tech.firstName }}
+    </option>
+  </select>
+
+  <button
+    (click)="assign()"
+    [disabled]="loading || !selectedTechnicianId"
+  >
+    Assign
+  </button>
+
+</div>

@@ -10,6 +10,16 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
+  // ================= ADMIN =================
+  {
+    path: 'admin',
+    canActivate: [RoleGuard],
+    data: { role: 'ADMIN' },
+    loadChildren: () =>
+      import('./features/admin/admin.routes')
+        .then(m => m.ADMIN_ROUTES)
+  },
+
   // ================= CUSTOMER =================
   {
     path: 'customer',

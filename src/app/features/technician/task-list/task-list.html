@@ -1,18 +1,34 @@
-<h2>My Assigned Tasks</h2>
+<div class="container">
+  <h2 class="title">My Assigned Tasks</h2>
 
-<div *ngIf="loading">Loading...</div>
+  <div *ngIf="loading" class="loading">Loading tasks...</div>
 
-<div *ngIf="!loading && tasks.length === 0">
-  No tasks assigned yet.
-</div>
+  <div *ngIf="!loading && tasks.length === 0" class="empty">
+    No tasks assigned yet.
+  </div>
 
-<div *ngFor="let task of tasks" class="task-card">
-  <p><b>Booking ID:</b> {{ task.bookingId }}</p>
-  <p><b>Service:</b> {{ task.serviceName }}</p>
-  <p><b>Category:</b> {{ task.categoryName }}</p>
-  <p><b>Status:</b> {{ task.status }}</p>
+  <div class="task-grid">
+    <div class="task-card" *ngFor="let task of tasks">
+      <div class="card-header">
+        <span class="booking-id">#{{ task.bookingId }}</span>
+        <span class="status assigned">{{ task.status }}</span>
+      </div>
 
-  <button routerLink="/technician/update-status/{{ task.bookingId }}">
-    Update Status
-  </button>
+      <div class="card-body">
+        <p><b>Service:</b> {{ task.serviceName }}</p>
+        <p><b>Category:</b> {{ task.categoryName }}</p>
+        <p><b>Date:</b> {{ task.scheduledDate }}</p>
+        <p><b>Time:</b> {{ task.timeSlot }}</p>
+      </div>
+
+      <div class="card-footer">
+        <button
+          class="primary-btn"
+          [routerLink]="['/technician/update-status', task.bookingId]"
+        >
+          Update Status
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

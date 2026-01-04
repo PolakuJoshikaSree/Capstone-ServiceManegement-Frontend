@@ -1,1 +1,21 @@
-<p>assign-technician works!</p>
+<h2>Assign Technician</h2>
+
+<p *ngIf="loading">Loading bookings...</p>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<div *ngFor="let booking of bookings" class="card">
+
+  <p><strong>Booking ID:</strong> {{ booking.bookingId }}</p>
+  <p><strong>Service:</strong> {{ booking.serviceName }}</p>
+
+  <input
+    type="text"
+    placeholder="Enter Technician ID"
+    [(ngModel)]="selectedTechnician[booking.bookingId]"
+  />
+
+  <button (click)="assign(booking.bookingId)">
+    Assign
+  </button>
+
+</div>

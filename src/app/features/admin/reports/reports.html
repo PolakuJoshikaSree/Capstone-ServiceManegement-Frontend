@@ -1,0 +1,45 @@
+<div class="reports-page">
+  <h1>Reports</h1>
+
+  <div *ngIf="loading">Loading reports...</div>
+
+  <!-- BOOKINGS BY STATUS -->
+  <section>
+    <h2>Bookings by Status</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of bookingStatusReports">
+          <td>{{ r.status }}</td>
+          <td>{{ r.count }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- TECHNICIAN TASK COUNT -->
+  <section>
+    <h2>Technician-wise Task Count</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Technician ID</th>
+          <th>Task Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of technicianTaskReports">
+          <td>{{ r.technicianId }}</td>
+          <td>{{ r.taskCount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -1,1 +1,71 @@
-<p>users works!</p>
+<div class="users-page">
+
+  <!-- Header -->
+  <div class="users-header">
+    <div>
+      <h2>Users</h2>
+      <p class="subtitle">Registered system users</p>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="loading">
+    Loading users...
+  </div>
+
+  <!-- Error -->
+  <div class="error" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <!-- Empty -->
+  <div class="empty-state" *ngIf="!loading && users.length === 0">
+    No users found.
+  </div>
+
+  <!-- Users Table -->
+  <div class="table-wrapper" *ngIf="!loading && users.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.email }}</td>
+
+          <td>
+            {{ user.firstName || '-' }} {{ user.lastName || '' }}
+          </td>
+
+          <td>
+            <span
+              class="role-badge"
+              [class.admin]="user.role === 'ADMIN'"
+              [class.manager]="user.role === 'MANAGER'"
+              [class.user]="user.role === 'USER'"
+            >
+              {{ user.role }}
+            </span>
+          </td>
+
+          <td>
+            <span
+              class="status"
+              [class.active]="user.accountStatus === 'ACTIVE'"
+              [class.inactive]="user.accountStatus !== 'ACTIVE'"
+            >
+              {{ user.accountStatus || 'ACTIVE' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

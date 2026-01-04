@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -15,17 +15,29 @@ export class TaskListComponent implements OnInit {
   tasks: any[] = [];
   loading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef   // inject
+  ) {}
 
   ngOnInit(): void {
     this.http
-      .get<any[]>('http://localhost:8084/api/bookings/technician/my')
+      .get<any[]>('http://localhost:8765/api/bookings/technician/my')
       .subscribe({
-        next: res => {
-          this.tasks = res;
+        next: (res) => {
+          console.log('Assigned tasks:', res);
+
+          this.tasks = res || [];
           this.loading = false;
+
+          this.cdr.detectChanges(); // force UI update
         },
-        error: () => this.loading = false
+        error: (err) => {
+          console.error('Failed to load tasks', err);
+
+          this.loading = false;
+          this.cdr.detectChanges(); //ensure spinner stops
+        }
       });
   }
 }

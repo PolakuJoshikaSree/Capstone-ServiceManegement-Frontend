@@ -17,7 +17,7 @@ export class MyServicesComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private cdr: ChangeDetectorRef   // ✅ explicitly inject
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -28,26 +28,20 @@ export class MyServicesComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    this.http.get<any[]>(
-      'http://localhost:8084/api/bookings/my-bookings'
-    ).subscribe({
-      next: (res) => {
-        console.log('MY BOOKINGS →', res);
-
-        this.bookings = res || [];
-        this.loading = false;
-
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error(err);
-
-        this.error = 'Failed to load bookings';
-        this.loading = false;
-
-        this.cdr.detectChanges();
-      }
-    });
+    this.http
+      .get<any[]>('http://localhost:8765/api/bookings/my')
+      .subscribe({
+        next: (res) => {
+          this.bookings = res || [];
+          this.loading = false;
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          this.error = 'Failed to load bookings';
+          this.loading = false;
+          this.cdr.detectChanges();
+        }
+      });
   }
 
   trackByBookingId(index: number, item: any): string {

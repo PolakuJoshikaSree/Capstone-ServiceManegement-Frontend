@@ -29,12 +29,11 @@ export class ServiceDetailsComponent implements OnInit {
     if (!id) {
       this.isLoading = false;
       this.errorMessage = 'Invalid service ID';
-      this.cdr.detectChanges();
       return;
     }
 
     this.http
-      .get(`http://localhost:8082/api/services/${id}`)
+      .get(`http://localhost:8765/api/services/${id}`)
       .subscribe({
         next: (res) => {
           this.service = res;
@@ -50,14 +49,13 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   bookService(): void {
-  this.router.navigate(['/customer/create-booking'], {
-    queryParams: {
-      serviceName: this.service.name,
-      categoryName: this.service.categoryName
-    }
-  });
-}
-
+    this.router.navigate(['/customer/create-booking'], {
+      queryParams: {
+        serviceName: this.service.name,
+        categoryName: this.service.categoryName
+      }
+    });
+  }
 
   goBack(): void {
     this.router.navigate(['/customer/services']);

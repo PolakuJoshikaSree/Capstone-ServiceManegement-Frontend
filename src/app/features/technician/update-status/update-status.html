@@ -1,13 +1,19 @@
 <div class="container">
   <h2>Update Booking Status</h2>
 
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <label>Status</label>
+
   <select [(ngModel)]="status">
-    <option value="">Select status</option>
-    <option value="IN_PROGRESS">IN_PROGRESS</option>
-    <option value="COMPLETED">COMPLETED</option>
+    <option value="IN_PROGRESS">In Progress</option>
+    <option value="COMPLETED">Completed</option>
   </select>
 
-  <button (click)="update()" [disabled]="!status">
-    Update
+  <button
+    (click)="update()"
+    [disabled]="loading"
+  >
+    {{ loading ? 'Updating...' : 'Update' }}
   </button>
 </div>

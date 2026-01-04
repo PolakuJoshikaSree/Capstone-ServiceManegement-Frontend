@@ -23,34 +23,29 @@ export class LoginComponent {
   ) {}
 
   login(): void {
-  this.http.post<any>('http://localhost:8802/api/auth/login', {
+  this.http.post<any>('http://localhost:8765/api/auth/login', {
     email: this.email,
     password: this.password
   }).subscribe({
     next: (res) => {
-
       const token = res.data.accessToken;
-      const role = res.data.user.role; // ADMIN | MANAGER | TECHNICIAN | CUSTOMER
+      const role = res.data.user.role;
+      const userId = res.data.user.id;
 
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
-
-      console.log('Logged in as:', role);
+      localStorage.setItem('userId', userId);
 
       switch (role) {
         case 'ADMIN':
-          this.router.navigate(['/manager']);
+          this.router.navigate(['/admin/dashboard']);
           break;
-
         case 'MANAGER':
           this.router.navigate(['/manager']);
           break;
-
         case 'TECHNICIAN':
           this.router.navigate(['/technician/tasks']);
           break;
-
-        case 'CUSTOMER':
         default:
           this.router.navigate(['/customer/services']);
       }
@@ -60,4 +55,5 @@ export class LoginComponent {
     }
   });
 }
+
 }
