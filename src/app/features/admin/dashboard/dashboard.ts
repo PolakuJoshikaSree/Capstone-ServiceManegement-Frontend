@@ -20,12 +20,21 @@ export class AdminDashboardComponent implements OnInit {
     requested: 0
   };
 
+  // ✅ NEW: Monthly Revenue
+  monthlyRevenue: Record<string, number> = {};
+  revenueLoaded = false;
+
   constructor(
     private http: HttpClient,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+    this.loadBookingStats();
+  }
+
+  // ================= BOOKINGS STATS =================
+  loadBookingStats() {
     this.http
       .get<any[]>('http://localhost:8765/api/bookings')
       .subscribe(bookings => {
@@ -44,7 +53,7 @@ export class AdminDashboardComponent implements OnInit {
         this.stats.requested =
           bookings.filter(b => b.status === 'REQUESTED').length;
 
-        this.cdr.detectChanges(); // safe
+        this.cdr.detectChanges();
       });
   }
 }

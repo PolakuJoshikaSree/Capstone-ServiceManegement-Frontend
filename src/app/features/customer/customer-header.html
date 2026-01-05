@@ -8,6 +8,12 @@
   <!-- RIGHT -->
   <div class="right">
 
+    <!-- Notifications -->
+    <app-notifications
+      class="notifications"
+      [userId]="userId">
+    </app-notifications>
+
     <button class="link-btn" (click)="goMyBookings()">
       My Bookings
     </button>

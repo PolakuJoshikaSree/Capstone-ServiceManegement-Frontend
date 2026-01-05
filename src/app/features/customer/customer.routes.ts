@@ -6,6 +6,7 @@ import { MyServicesComponent } from './my-services/my-services';
 import { CreateBookingComponent } from './create-booking/create-booking';
 import { ServiceDetailsComponent } from './service-details/service-details';
 import { InvoicesComponent } from './invoices/invoices';
+import { NotificationComponent } from './notifications/notifications';
 
 export const customerRoutes: Routes = [
   {
@@ -17,6 +18,8 @@ export const customerRoutes: Routes = [
       { path: 'create-booking', component: CreateBookingComponent },
       { path: 'service/:id', component: ServiceDetailsComponent },
       { path: 'invoices', component: InvoicesComponent },
+
+      { path: 'notifications', component: NotificationComponent },
 
       { path: '', redirectTo: 'services', pathMatch: 'full' }
     ]

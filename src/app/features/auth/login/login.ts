@@ -29,7 +29,7 @@ export class LoginComponent {
   }).subscribe({
     next: (res) => {
       const token = res.data.accessToken;
-      const role = res.data.user.role;
+      const role = res.data.user.role.replace('ROLE_', '');
       const userId = res.data.user.id;
 
       localStorage.setItem('token', token);

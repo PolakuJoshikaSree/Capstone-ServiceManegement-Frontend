@@ -1,11 +1,44 @@
-<header class="header">
+<header class="topbar">
+
+  <!-- LEFT -->
   <div class="logo">
     ServiceHub
   </div>
 
-  <div class="actions">
+  <!-- RIGHT -->
+  <div class="right">
+
+    <!-- 🔔 Notification Bell -->
+    <div class="notification-wrapper">
+      <span class="bell" (click)="toggleNotifications()">🔔</span>
+
+      <span class="badge" *ngIf="unreadCount > 0">
+        {{ unreadCount }}
+      </span>
+
+      <!-- 🔽 Dropdown -->
+      <div class="dropdown" *ngIf="showNotifications">
+        <div *ngIf="notifications.length === 0" class="empty">
+          No notifications
+        </div>
+
+        <div
+          class="item"
+          *ngFor="let n of notifications; trackBy: trackById"
+          [class.unread]="!n.read"
+          (click)="markRead(n)"
+        >
+          <strong>{{ n.title }}</strong>
+          <p>{{ n.message }}</p>
+          <span>{{ n.createdAt | date:'short' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout -->
     <button class="logout-btn" (click)="logout()">
       Logout
     </button>
   </div>
+
 </header>

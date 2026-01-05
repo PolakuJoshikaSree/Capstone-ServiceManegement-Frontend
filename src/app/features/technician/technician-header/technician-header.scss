@@ -1,34 +1,105 @@
-.header {
+.topbar {
   height: 64px;
-  padding: 0 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0 28px;
   background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 600;
-  color: #5b5cf6;
+  font-size: 20px;
+  font-weight: 700;
+  color: #4f46e5;
 }
 
-.actions {
+.right {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
+.notification-wrapper {
+  position: relative;
+}
+
+.bell {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 38px;
+  width: 320px;
+  background: #eef2ff;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  z-index: 999;
+}
+
+.item {
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  background: #f8fafc;
+}
+
+.item.unread {
+  background: #e0e7ff;
+  border-left: 4px solid #4f46e5;
+}
+
+.item strong {
+  font-size: 14px;
+}
+
+.item p {
+  margin: 6px 0;
+  font-size: 13px;
+}
+
+.item span {
+  font-size: 11px;
+  color: gray;
+}
+
+.empty {
+  text-align: center;
+  padding: 16px;
+  color: gray;
+}
+
+/* Logout */
 .logout-btn {
-  background: #ff4d4f;
-  color: #fff;
+  background: #ef4444;
+  color: white;
   border: none;
   padding: 8px 18px;
-  border-radius: 6px;
+  border-radius: 999px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
 }
 
 .logout-btn:hover {
-  opacity: 0.9;
+  background: #dc2626;
 }

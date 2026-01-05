@@ -1,0 +1,23 @@
+<div class="notifications-page">
+  <h2>Notifications</h2>
+
+  <!-- Empty state -->
+  <div class="empty" *ngIf="notifications.length === 0">
+    No notifications
+  </div>
+
+  <!-- Notifications list -->
+  <div
+    class="notification"
+    *ngFor="let n of notifications; trackBy: trackById"
+    [class.unread]="!n.read"
+    (click)="markRead(n)"
+  >
+    <div class="header">
+      <h4>{{ n.title }}</h4>
+      <span class="time">{{ n.createdAt | date:'short' }}</span>
+    </div>
+
+    <p>{{ n.message }}</p>
+  </div>
+</div>

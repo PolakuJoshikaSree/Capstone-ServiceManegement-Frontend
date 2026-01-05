@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { NotificationComponent } from './notifications/notifications';
 
 @Component({
   standalone: true,
   selector: 'app-customer-header',
-  imports: [CommonModule, RouterModule], // ✅ RouterModule REQUIRED
+  imports: [
+    CommonModule,
+    RouterModule,
+    NotificationComponent   // ✅ ADD THIS
+  ],
   templateUrl: './customer-header.html',
   styleUrls: ['./customer-header.scss']
 })
 export class CustomerHeaderComponent {
+
+  userId = localStorage.getItem('userId')!; // or decode from JWT
 
   constructor(private router: Router) {}
 
@@ -22,14 +29,11 @@ export class CustomerHeaderComponent {
   }
 
   goInvoices() {
-  console.log('Token:', localStorage.getItem('token'));
-  this.router.navigate(['/customer/invoices']);
-}
-
+    this.router.navigate(['/customer/invoices']);
+  }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }

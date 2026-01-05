@@ -2,7 +2,11 @@
   padding: 24px;
 }
 
+/* Header */
 .users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 
   h2 {
@@ -14,6 +18,48 @@
     color: #666;
     font-size: 14px;
   }
+}
+
+/* Add button */
+.add-btn {
+  background: #5b5cf6;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Add user form */
+.add-user-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  input,
+  select {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+}
+
+.save-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.cancel-btn {
+  background: #eee;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
 }
 
 /* Loading / error */
@@ -68,7 +114,6 @@ td {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  display: inline-block;
 }
 
 .role-badge.admin {
@@ -81,9 +126,9 @@ td {
   color: #1565c0;
 }
 
-.role-badge.user {
-  background: #e8f5e9;
-  color: #2e7d32;
+.role-badge.technician {
+  background: #ede7f6;
+  color: #4527a0;
 }
 
 /* Status */

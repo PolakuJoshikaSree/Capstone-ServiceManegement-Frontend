@@ -17,8 +17,16 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'billing', component: BillingComponent },
       { path: 'services', component: ManageServicesComponent },
       { path: 'users', component: UsersComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'reports', component: ReportsComponent }
+      { path: 'reports', component: ReportsComponent },
+
+      {
+        path: 'monthly-revenue',
+        loadComponent: () =>
+          import('./monthly-revenue/monthly-revenue')
+            .then(m => m.MonthlyRevenueComponent)
+      },
+
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
 ];

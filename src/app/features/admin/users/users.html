@@ -6,7 +6,59 @@
       <h2>Users</h2>
       <p class="subtitle">Registered system users</p>
     </div>
+
+    <button class="add-btn" (click)="showAddUser = !showAddUser">
+      + Add User
+    </button>
   </div>
+
+ <div class="add-user-form" *ngIf="showAddUser">
+
+  <input
+    type="text"
+    placeholder="First Name"
+    [(ngModel)]="newUser.firstName"
+  />
+
+  <input
+    type="text"
+    placeholder="Last Name"
+    [(ngModel)]="newUser.lastName"
+  />
+
+  <input
+    type="email"
+    placeholder="Email"
+    [(ngModel)]="newUser.email"
+  />
+
+  <input
+    type="text"
+    placeholder="Phone Number (+91XXXXXXXXXX)"
+    [(ngModel)]="newUser.phoneNumber"
+  />
+
+  <input
+    type="password"
+    placeholder="Password"
+    [(ngModel)]="newUser.password"
+  />
+
+  <select [(ngModel)]="newUser.role">
+    <option value="">Select Role</option>
+    <option value="MANAGER">MANAGER</option>
+    <option value="TECHNICIAN">TECHNICIAN</option>
+  </select>
+
+  <!-- Optional -->
+  <input placeholder="Address" [(ngModel)]="newUser.address" />
+  <input placeholder="City" [(ngModel)]="newUser.city" />
+  <input placeholder="State" [(ngModel)]="newUser.state" />
+  <input placeholder="Zip Code" [(ngModel)]="newUser.zipCode" />
+
+  <button class="create-btn" (click)="createUser()">Create</button>
+  <button class="cancel-btn" (click)="cancel()">Cancel</button>
+</div>
 
   <!-- Loading -->
   <div class="loading" *ngIf="loading">
@@ -48,7 +100,7 @@
               class="role-badge"
               [class.admin]="user.role === 'ADMIN'"
               [class.manager]="user.role === 'MANAGER'"
-              [class.user]="user.role === 'USER'"
+              [class.technician]="user.role === 'TECHNICIAN'"
             >
               {{ user.role }}
             </span>

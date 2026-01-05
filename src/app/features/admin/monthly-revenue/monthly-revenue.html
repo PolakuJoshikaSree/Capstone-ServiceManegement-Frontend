@@ -1,0 +1,37 @@
+<div class="report-container">
+  <h1>Monthly Revenue</h1>
+  <p class="subtitle">Revenue generated from paid invoices</p>
+
+  <!-- Loading state -->
+  <p *ngIf="!revenueLoaded" class="info-text">
+    Loading revenue data...
+  </p>
+
+  <!-- No data -->
+  <p
+    *ngIf="revenueLoaded && (monthlyRevenue | keyvalue).length === 0"
+    class="info-text"
+  >
+    No revenue data available
+  </p>
+
+  <!-- Revenue table -->
+  <table
+    *ngIf="revenueLoaded && (monthlyRevenue | keyvalue).length > 0"
+    class="revenue-table"
+  >
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Total Revenue (₹)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let r of monthlyRevenue | keyvalue">
+        <td>{{ r.key }}</td>
+        <td class="amount">₹ {{ r.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
