@@ -31,15 +31,19 @@ export class CreateBookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.serviceName =
-      this.route.snapshot.queryParamMap.get('serviceName') || '';
-    this.categoryName =
-      this.route.snapshot.queryParamMap.get('categoryName') || '';
+    this.serviceName = this.route.snapshot.queryParamMap.get('serviceName') ?? '';
+    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName') ?? '';
   }
 
   confirm(): void {
-    this.error = null;
+
+    if (!this.scheduledDate || !this.timeSlot || !this.paymentMode || !this.address) {
+      this.error = 'Please fill all required fields';
+      return;
+    }
+
     this.loading = true;
+    this.error = null;
 
     const payload = {
       serviceName: this.serviceName,
@@ -51,11 +55,12 @@ export class CreateBookingComponent implements OnInit {
       address: this.address
     };
 
-    this.http
-      .post('http://localhost:8765/api/bookings', payload)
+    this.http.post('http://localhost:8765/api/bookings', payload)
       .subscribe({
         next: () => {
-          this.router.navigateByUrl('/customer/my-services');
+          this.loading = false;
+          this.router.navigate(['/customer/my-services']);
+
         },
         error: (err) => {
           this.loading = false;

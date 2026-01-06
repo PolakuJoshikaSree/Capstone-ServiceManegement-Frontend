@@ -6,56 +6,65 @@
     <span>{{ categoryName }}</span>
   </p>
 
-  <!-- Scheduled Date -->
-  <label>Scheduled Date</label>
-  <input
-    type="date"
-    [(ngModel)]="scheduledDate"
-    required
-  />
+  <form (ngSubmit)="confirm()">
 
-  <!-- Time Slot -->
-  <label>Time Slot</label>
-  <input
-    type="text"
-    placeholder="10:00 - 12:00"
-    [(ngModel)]="timeSlot"
-    required
-  />
+    <!-- Scheduled Date -->
+    <label>Scheduled Date</label>
+    <input
+      type="date"
+      [(ngModel)]="scheduledDate"
+      name="scheduledDate"
+      required
+    />
 
-  <!-- Issue -->
-  <label>Issue Description</label>
-  <textarea
-    rows="3"
-    placeholder="Describe the issue"
-    [(ngModel)]="issueDescription"
-    required>
-  </textarea>
+    <!-- Time Slot -->
+    <label>Time Slot</label>
+    <input
+      type="text"
+      placeholder="10:00 - 12:00"
+      [(ngModel)]="timeSlot"
+      name="timeSlot"
+      required
+    />
 
-  <!-- Payment -->
-  <label>Payment Mode</label>
-  <select [(ngModel)]="paymentMode" required>
-    <option value="" disabled>Select payment mode</option>
-    <option value="CASH">Cash</option>
-    <option value="ONLINE">Online</option>
-  </select>
+    <!-- Issue -->
+    <label>Issue Description</label>
+    <textarea
+      rows="3"
+      placeholder="Describe the issue"
+      [(ngModel)]="issueDescription"
+      name="issueDescription">
+    </textarea>
 
-  <!-- Address -->
-  <label>Service Address</label>
-  <textarea
-    rows="2"
-    [(ngModel)]="address"
-    required>
-  </textarea>
+    <!-- Payment -->
+    <label>Payment Mode</label>
+    <select
+      [(ngModel)]="paymentMode"
+      name="paymentMode"
+      required>
+      <option value="" disabled>Select payment mode</option>
+      <option value="CASH">Cash</option>
+      <option value="ONLINE">Online</option>
+    </select>
 
-  <!-- BUTTON -->
-  <button
-    (click)="confirm()"
-    [disabled]="loading || !scheduledDate || !timeSlot || !paymentMode || !address"
-  >
-    {{ loading ? 'Booking...' : 'Confirm Booking' }}
-  </button>
+    <!-- Address -->
+    <label>Service Address</label>
+    <textarea
+      rows="2"
+      [(ngModel)]="address"
+      name="address"
+      required>
+    </textarea>
 
-  <!-- ERROR -->
-  <p class="error" *ngIf="error">{{ error }}</p>
+    <!-- BUTTON -->
+    <button
+      type="submit"
+      [disabled]="loading">
+      {{ loading ? 'Booking...' : 'Confirm Booking' }}
+    </button>
+
+    <!-- ERROR -->
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+  </form>
 </div>
