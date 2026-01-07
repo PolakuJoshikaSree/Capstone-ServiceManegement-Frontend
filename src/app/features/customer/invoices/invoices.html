@@ -12,16 +12,13 @@
   class="invoice-card"
   *ngFor="let invoice of invoices">
 
+  <!-- Invoice Number -->
   <div class="invoice-row">
-    <span class="label">Invoice</span>
+    <span class="label">Invoice ID</span>
     <span class="value">{{ invoice.invoiceNumber }}</span>
   </div>
 
-  <div class="invoice-row">
-    <span class="label">Total Amount</span>
-    <span class="value">₹{{ invoice.totalAmount }}</span>
-  </div>
-
+  <!-- Status + Action -->
   <div class="invoice-row status-row">
 
     <span
@@ -30,7 +27,7 @@
         'pending': invoice.paymentStatus === 'PENDING',
         'paid': invoice.paymentStatus === 'PAID'
       }">
-      {{ invoice.paymentStatus }}
+      {{ invoice.paymentStatus === 'PENDING' ? 'Pending Payment' : 'Paid' }}
     </span>
 
     <button
@@ -43,7 +40,7 @@
     <span
       *ngIf="invoice.paymentStatus === 'PAID'"
       class="paid-text">
-      ✅ Paid
+      ✓ Payment Completed
     </span>
 
   </div>

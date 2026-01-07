@@ -49,7 +49,7 @@ export class RegisterComponent {
     };
 
     this.http.post<any>(
-      'http://localhost:8765/auth-service/api/auth/register',
+      'http://localhost:8765/api/auth/register',
       payload
     ).subscribe({
       next: (res) => {

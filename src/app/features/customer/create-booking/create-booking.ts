@@ -15,6 +15,8 @@ export class CreateBookingComponent implements OnInit {
 
   serviceName = '';
   categoryName = '';
+  servicePrice = 0; // UI ONLY
+
   scheduledDate = '';
   timeSlot = '';
   issueDescription = '';
@@ -31,13 +33,24 @@ export class CreateBookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.serviceName = this.route.snapshot.queryParamMap.get('serviceName') ?? '';
-    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName') ?? '';
+    this.serviceName =
+      this.route.snapshot.queryParamMap.get('serviceName') ?? '';
+
+    this.categoryName =
+      this.route.snapshot.queryParamMap.get('categoryName') ?? '';
+
+    this.servicePrice =
+      Number(this.route.snapshot.queryParamMap.get('servicePrice')) || 0;
   }
 
   confirm(): void {
 
-    if (!this.scheduledDate || !this.timeSlot || !this.paymentMode || !this.address) {
+    if (
+      !this.scheduledDate ||
+      !this.timeSlot ||
+      !this.paymentMode ||
+      !this.address
+    ) {
       this.error = 'Please fill all required fields';
       return;
     }
@@ -45,6 +58,7 @@ export class CreateBookingComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
+    // 🔥 DO NOT SEND servicePrice
     const payload = {
       serviceName: this.serviceName,
       categoryName: this.categoryName,
@@ -60,7 +74,6 @@ export class CreateBookingComponent implements OnInit {
         next: () => {
           this.loading = false;
           this.router.navigate(['/customer/my-services']);
-
         },
         error: (err) => {
           this.loading = false;

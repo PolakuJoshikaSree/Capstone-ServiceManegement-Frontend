@@ -3,12 +3,14 @@
 
   <p class="service-info">
     <strong>{{ serviceName }}</strong><br />
-    <span>{{ categoryName }}</span>
+    <span>{{ categoryName }}</span><br />
+    <span class="price note">
+      Price will be calculated after service completion
+    </span>
   </p>
 
   <form (ngSubmit)="confirm()">
 
-    <!-- Scheduled Date -->
     <label>Scheduled Date</label>
     <input
       type="date"
@@ -17,7 +19,6 @@
       required
     />
 
-    <!-- Time Slot -->
     <label>Time Slot</label>
     <input
       type="text"
@@ -27,16 +28,14 @@
       required
     />
 
-    <!-- Issue -->
     <label>Issue Description</label>
     <textarea
       rows="3"
-      placeholder="Describe the issue"
       [(ngModel)]="issueDescription"
-      name="issueDescription">
+      name="issueDescription"
+      required>
     </textarea>
 
-    <!-- Payment -->
     <label>Payment Mode</label>
     <select
       [(ngModel)]="paymentMode"
@@ -47,7 +46,6 @@
       <option value="ONLINE">Online</option>
     </select>
 
-    <!-- Address -->
     <label>Service Address</label>
     <textarea
       rows="2"
@@ -56,15 +54,10 @@
       required>
     </textarea>
 
-    <!-- BUTTON -->
-    <button
-      type="submit"
-      [disabled]="loading">
+    <button type="submit" [disabled]="loading">
       {{ loading ? 'Booking...' : 'Confirm Booking' }}
     </button>
 
-    <!-- ERROR -->
     <p class="error" *ngIf="error">{{ error }}</p>
-
   </form>
 </div>

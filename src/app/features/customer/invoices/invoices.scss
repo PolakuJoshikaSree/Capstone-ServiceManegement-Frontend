@@ -2,6 +2,7 @@
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
+  color: #111827;
 }
 
 .loading,
@@ -14,21 +15,27 @@
 
 .invoice-card {
   background: #ffffff;
-  border-radius: 14px;
-  padding: 18px 20px;
+  border-radius: 16px;
+  padding: 18px 22px;
   margin-bottom: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.invoice-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
 }
 
 .invoice-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .status-row {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .label {
@@ -45,7 +52,7 @@
 
 /* Status badges */
 .status {
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 700;
@@ -67,10 +74,11 @@
   background: #4f46e5;
   color: #ffffff;
   border: none;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 
 .pay-btn:hover {
@@ -81,4 +89,5 @@
 .paid-text {
   font-weight: 600;
   color: #16a34a;
+  font-size: 14px;
 }
